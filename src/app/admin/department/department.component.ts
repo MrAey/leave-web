@@ -1,0 +1,103 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { DepartmentService } from '../../shared/services/department.service';
+import { ModalNewDepartmentComponent } from '../../shared/modal-new-department/modal-new-department.component';
+import { AlertService } from '../../shared/alert.service';
+
+@Component({
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styles: []
+})
+export class DepartmentComponent implements OnInit {
+
+  @ViewChild('mdlNewDepartment') private mdlNewDepartment: ModalNewDepartmentComponent;
+
+  items: any = [];
+  page: any = 1;
+  total = 0;
+  pageSize = 10;
+  pageSizeItems = [10, 20, 30, 40, 50, 100];
+
+  limit = 0;
+  offset = 0;
+  query: any = '';
+
+  constructor(
+    private departmentService: DepartmentService,
+    private alertService: AlertService
+  ) {
+  }
+
+  async ngOnInit() {
+    await this.getDepartments();
+  }
+
+  openModal(item: any = null) {
+    this.mdlNewDepartment.open(item);
+  }
+
+  async getDepartments() {
+    try {
+      const rs: any = await this.departmentService.list(this.query, this.pageSize, this.offset);
+      if (rs.rows) {
+        this.items = rs.rows;
+        this.total = rs.total;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async onPageChange(event: number) {
+    console.log(event);
+    // tslint:disable-next-line:variable-name
+    const _currentPage = +event;
+    // tslint:disable-next-line:variable-name
+    let _offset = 0;
+    if (_currentPage > 1) {
+      _offset = (_currentPage - 1) * this.pageSize;
+    }
+
+    this.offset = _offset;
+    this.limit = this.pageSize;
+
+    console.log(this.offset, this.limit);
+
+    await this.getDepartments();
+  }
+
+  onSaveDepartment(event: any) {
+    if (event) {
+      this.getDepartments();
+    } else {
+      console.log('User cancel');
+    }
+  }
+
+  async doRemove(item: any) {
+    const confirm = await this.alertService.confirm('ยืนยันการลบ', `ต้องการลบ ${ item.department_name } ใช่หรือไม่?`);
+    if (confirm) {
+      try {
+        const rs: any = await this.departmentService.delete(item.department_id);
+        if (rs.ok) {
+          this.alertService.success();
+          await this.getDepartments();
+        } else {
+          this.alertService.error(rs.error);
+        }
+      } catch (e) {
+        this.alertService.error();
+      }
+    }
+  }
+
+  doSearch() {
+    this.getDepartments();
+  }
+
+  enterSearch(event: KeyboardEvent) {
+    if (event.keyCode === 13) {
+      this.getDepartments();
+    }
+  }
+}
