@@ -40,7 +40,7 @@
   </table>
   <div class="row">
     <div class="col-md-1">
-      <select (change)="getEmployeeTypes()" class="form-control" name="pageCount" id="pageCount" [(ngModel)]="pageSize">
+      <select (change)="getEmployeeTypes()" class="form-control" name="pageCount" id="pageCount" [(ngModel)]="pageSize"  style="width:80px">
         <option [value]="item" *ngFor="let item of pageSizeItems">{{item}}</option>
       </select>
     </div>
