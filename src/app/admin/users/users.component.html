@@ -1,4 +1,4 @@
-<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-orange rounded shadow-sm">
 
   <span class="mr-3 mdi mdi-24px mdi-account-group"></span>
 
@@ -84,7 +84,7 @@
 
   <div class="row">
     <div class="col-md-1">
-      <select (change)="getUsers()" class="form-control" name="pageCount" id="pageCount" [(ngModel)]="pageSize">
+      <select (change)="getUsers()" class="form-control" name="pageCount" id="pageCount" [(ngModel)]="pageSize" style="width:80px">
         <option [value]="item" *ngFor="let item of pageSizeItems">{{item}}</option>
       </select>
     </div>

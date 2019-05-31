@@ -70,6 +70,10 @@ body {
 .text-white-50 { color: rgba(255, 255, 255, .5); }
 
 .bg-purple { background-color: #6f42c1; }
+.bg-gray { background-color: #d3d1d6; }
+.bg-orange { background-color: #f74a06; }
+.bg-blue { background-color: #0905fc; }
+.bg-green { background-color: #0b6603; }
 
 .lh-100 { line-height: 1; }
 .lh-125 { line-height: 1.25; }

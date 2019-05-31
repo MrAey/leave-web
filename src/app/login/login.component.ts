@@ -53,9 +53,11 @@ export class LoginComponent implements OnInit {
         const rs: any = await this.loginService.doLogin(this.username, this.password, userType);
         if (rs.ok) {
           const token = rs.token;
+
           sessionStorage.setItem('token', token);
 
           const decodedToken = this.jwtHelper.decodeToken(token);
+          sessionStorage.setItem('fullname', decodedToken.first_name + ' ' + decodedToken.last_name);
 
           if (decodedToken.user_type === 'ADMIN') {
             this.router.navigate(['/admin']);
