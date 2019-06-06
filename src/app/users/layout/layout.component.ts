@@ -9,11 +9,13 @@ import { Router } from '@angular/router';
 export class LayoutComponent implements OnInit {
 
   fullname: string;
+  empID: string;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
     this.fullname = sessionStorage.getItem('fullname');
+    this.empID = sessionStorage.getItem('id');
   }
 
   logout() {

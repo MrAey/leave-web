@@ -1,3 +1,36 @@
-<p>
-  profile works!
-</p>
+<div class="my-3 p-3 bg-white rounded shadow-sm">
+  <span class="d-block p-2 bg-success text-white rounded">ข้อมูลส่วนตัว</span><hr>
+  <div class="row">
+      <div class="col col-2">
+          <img src="./assets/images/user_profile.png" alt="..." class="img-thumbnail rounded-circle" width="200px" height="200px">
+      </div>
+      <div class="col col-10 float-left">
+          <ul class="list-group" *ngFor="let item of items">
+              <li class="list-group-item">ชื่อ-สกุล : {{item.first_name}} {{item.last_name}}</li>
+              <li class="list-group-item">ประเภทพนักงาน : {{item.employee_type_name}}</li>
+              <li class="list-group-item">หน่วยงานหลัก : {{item.department_name}}</li>
+              <li class="list-group-item">หน่วยงานย่อย : {{item.sub_department_name}}</li>
+          </ul><br>
+          <button type="button" class="btn btn-primary">
+              ลาพักผ่อน <span class="badge badge-light">2</span>
+              <span class="sr-only">unread messages</span>
+          </button>&nbsp;
+          <button type="button" class="btn btn-warning">
+              ลาป่วย <span class="badge badge-light">1</span>
+              <span class="sr-only">unread messages</span>
+          </button>&nbsp;
+          <button type="button" class="btn btn-info">
+              ลากิจ <span class="badge badge-light">0</span>
+              <span class="sr-only">unread messages</span>
+          </button>&nbsp;
+          <button type="button" class="btn btn-light">
+              ลาคลอด <span class="badge badge-light">0</span>
+              <span class="sr-only">unread messages</span>
+          </button>
+      </div>
+  </div><hr>
+  <div class="row p-3 justify-content-between">
+      <button type="button" class="btn btn-success">แก้ไข้ข้อมูล</button>&nbsp;
+      <button type="button" class="btn btn-danger">แก้ไข้รหัสผ่าน</button>
+  </div>
+</div>

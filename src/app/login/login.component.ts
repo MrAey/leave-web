@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
             //
           } else {
             // user
+            sessionStorage.setItem('id', decodedToken.employee_id);
             this.router.navigate(['/users']);
           }
           if (this.isRemember) {
