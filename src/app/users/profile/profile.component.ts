@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
 
   items: any = [];
 
-  query: any = sessionStorage.getItem('id');
+  employeeId: any = sessionStorage.getItem('id');
   departmentId: any = '';
   subDepartmentId: any = '';
   employeeTypeId: any = '';
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
   async getEmployees() {
     try {
       const rs: any = await this.employeeService.list(
-        this.query,
+        this.employeeId,
         this.employeeTypeId,
         this.departmentId,
         this.subDepartmentId,
