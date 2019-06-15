@@ -12,25 +12,27 @@
               <li class="list-group-item">หน่วยงานย่อย : {{item.sub_department_name}}</li>
           </ul><br>
           <button type="button" class="btn btn-primary">
-              ลาพักผ่อน <span class="badge badge-light">2</span>
+              ลาพักผ่อน <span class="badge badge-light">{{ totalTypeId1 }}</span>
               <span class="sr-only">unread messages</span>
           </button>&nbsp;
           <button type="button" class="btn btn-warning">
-              ลาป่วย <span class="badge badge-light">1</span>
+              ลากิจ <span class="badge badge-light">{{ totalTypeId2 }}</span>
               <span class="sr-only">unread messages</span>
           </button>&nbsp;
           <button type="button" class="btn btn-info">
-              ลากิจ <span class="badge badge-light">0</span>
+              ลาป่วย <span class="badge badge-light">{{ totalTypeId3 }}</span>
               <span class="sr-only">unread messages</span>
           </button>&nbsp;
           <button type="button" class="btn btn-light">
-              ลาคลอด <span class="badge badge-light">0</span>
+              ลาคลอด <span class="badge badge-light">{{ totalTypeId4 }}</span>
               <span class="sr-only">unread messages</span>
           </button>
       </div>
   </div><hr>
-  <div class="row p-3 justify-content-between">
-      <button type="button" class="btn btn-success">แก้ไข้ข้อมูล</button>&nbsp;
+  <div class="row p-3 justify-content-between" *ngFor="let item of items">
+      <button type="button" class="btn btn-success" (click)="openModal(item)">แก้ไข้ข้อมูล</button>&nbsp;
       <button type="button" class="btn btn-danger">แก้ไข้รหัสผ่าน</button>
   </div>
 </div>
+
+<app-modal-new-employee #mdlNewEmployee (onSave)="onSave($event)"></app-modal-new-employee>

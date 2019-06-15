@@ -29,6 +29,11 @@ export class UsersService {
     return this.httpClient.get(_url, this.httpOptions).toPromise();
   }
 
+  getTypeLeaves(employeeId: any, status: any, leaveTypeId: any) {
+    const _url = `${ this.apiUrl }/services/users/count-leave?employeeId=${ employeeId }&status=${ status }&leaveTypeId=${ leaveTypeId }`;
+    return this.httpClient.get(_url, this.httpOptions).toPromise();
+  }
+
   createLeaves(leaveTypeId: any, startDate: any, endDate: any, leaveDays: number, remark: any) {
     const _url = `${ this.apiUrl }/services/users/leaves`;
     const body: any = {
